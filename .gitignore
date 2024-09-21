@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+docker/.data/
+docker/docker/
+docker/volume-data
+
+

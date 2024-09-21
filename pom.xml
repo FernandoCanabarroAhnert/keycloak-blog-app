@@ -91,6 +91,59 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>${surefire.skip}</skip>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+		<configuration>
+			<excludes>
+			<exclude>com/fernandocanabarro/blog_app/BlogAppApplication.class</exclude>
+						<exclude>com/fernandocanabarro/blog_app/config/**</exclude>
+						<exclude>com/fernandocanabarro/blog_app/domain/**</exclude>
+						<exclude>com/fernandocanabarro/blog_app/controllers/**</exclude>
+						<exclude>com/fernandocanabarro/blog_app/services/exceptions/**</exclude>
+						<exclude>com/fernandocanabarro/blog_app/services/cache/**</exclude>
+						<exclude>com/fernandocanabarro/blog_app/services/JwtService.class</exclude>
+						<exclude>com/fernandocanabarro/blog_app/services/NewsService.class</exclude>
+			</excludes>
+		</configuration>
+		<executions>
+			<execution>
+				<goals>
+					<goal>prepare-agent</goal>
+				</goals>
+			</execution>
+			<execution>
+				<id>report</id>
+				<phase>prepare-package</phase>
+				<goals>
+					<goal>report</goal>
+				</goals>
+			</execution>
+		</executions>
+		
+		</plugin>
 		</plugins>
 	</build>
 
