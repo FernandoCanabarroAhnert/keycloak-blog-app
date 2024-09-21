@@ -1,4 +1,4 @@
-package com.test.blog_test.domain.entities;
+package com.fernandocanabarro.blog_app.domain.entities;
 
 import java.util.ArrayList;
 import java.util.List;

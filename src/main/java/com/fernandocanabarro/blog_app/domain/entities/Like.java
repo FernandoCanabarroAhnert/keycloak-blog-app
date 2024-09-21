@@ -1,4 +1,4 @@
-package com.test.blog_test.domain.entities;
+package com.fernandocanabarro.blog_app.domain.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
