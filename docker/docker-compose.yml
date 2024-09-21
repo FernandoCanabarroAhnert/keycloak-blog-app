@@ -1,0 +1,85 @@
+version: "3.7"
+services:
+# ======================================================================================================================
+# MYSQL PARA O KEYCLOAK
+# ======================================================================================================================
+  keycloak-mysql:
+    container_name: keycloak-mysql
+    image: mysql:8
+    volumes:
+      - ./volume-data/mysql_keycloak_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: password
+# ======================================================================================================================
+# KEYCLOAK
+# ======================================================================================================================
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:25.0.2
+    command: start-dev --import-realm
+    restart: always
+    environment:
+      DB_VENDOR: MYSQL
+      DB_ADDR: keycloak-mysql
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "8180:8080"
+    volumes:
+      - ./docker/keycloak/realms/:/opt/keycloak/data/import/
+    depends_on:
+      - keycloak-mysql
+# ======================================================================================================================
+# MONGODB
+# ======================================================================================================================
+  mongodb:
+    image: mongo:6
+    container_name: mongo_db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=1234567
+    ports:
+      - 27018:27017
+    volumes:
+      - ./.data/mongo:/data/db
+    networks:
+      - dev-network
+# ======================================================================================================================
+# MONGO EXPRESS
+# ======================================================================================================================
+  mongo-express:
+    image: mongo-express
+    container_name: mongo_express
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 1234567
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_BASICAUTH_USERNAME: root 
+      ME_CONFIG_BASICAUTH_PASSWORD: 1234567 
+    restart: always
+    ports:
+      - 8081:8081
+    networks:
+      - dev-network
+# ====================================================================================================================
+# REDIS SERVER
+# ====================================================================================================================
+  redis:
+    image: redis:6.2
+    container_name: dev-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - dev-network
+# ======================================================================================================================
+# REDE
+# ======================================================================================================================
+networks:
+  dev-network:
+    driver: bridge
