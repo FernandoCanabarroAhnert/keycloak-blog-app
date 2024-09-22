@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fernandocanabarro.blog_app.domain.dtos.CommentRequestDTO;
 import com.fernandocanabarro.blog_app.domain.dtos.CommentResponseDTO;
+import com.fernandocanabarro.blog_app.openapi.CommentControllerOpenAPI;
 import com.fernandocanabarro.blog_app.services.CommentService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,7 +21,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/comments")
-public class CommentController {
+public class CommentController implements CommentControllerOpenAPI{
 
     @Autowired
     private CommentService service;

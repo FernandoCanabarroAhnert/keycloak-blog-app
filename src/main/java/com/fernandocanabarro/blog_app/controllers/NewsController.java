@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fernandocanabarro.blog_app.domain.dtos.newsapi.NewsApiNotice;
 import com.fernandocanabarro.blog_app.domain.dtos.newsapi.NewsHub;
+import com.fernandocanabarro.blog_app.openapi.NewsControllerOpenAPI;
 import com.fernandocanabarro.blog_app.services.NewsService;
 
 @RestController
 @RequestMapping("/news")
-public class NewsController {
+public class NewsController implements NewsControllerOpenAPI{
 
     @Autowired
     private NewsService service;

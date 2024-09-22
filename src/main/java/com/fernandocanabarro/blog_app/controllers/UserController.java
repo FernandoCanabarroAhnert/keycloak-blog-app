@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fernandocanabarro.blog_app.domain.dtos.AuthorDTO;
 import com.fernandocanabarro.blog_app.domain.dtos.PostResponseDTO;
 import com.fernandocanabarro.blog_app.domain.dtos.UserDTO;
+import com.fernandocanabarro.blog_app.openapi.UserControllerOpenAPI;
 import com.fernandocanabarro.blog_app.services.PostService;
 import com.fernandocanabarro.blog_app.services.UserService;
 
@@ -21,7 +22,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class UserController implements UserControllerOpenAPI{
 
     @Autowired
     private PostService postService;

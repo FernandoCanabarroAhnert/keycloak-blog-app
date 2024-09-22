@@ -21,6 +21,7 @@ import com.fernandocanabarro.blog_app.domain.dtos.CommentResponseDTO;
 import com.fernandocanabarro.blog_app.domain.dtos.LikeDTO;
 import com.fernandocanabarro.blog_app.domain.dtos.PostRequestDTO;
 import com.fernandocanabarro.blog_app.domain.dtos.PostResponseDTO;
+import com.fernandocanabarro.blog_app.openapi.PostControllerOpenAPI;
 import com.fernandocanabarro.blog_app.services.PostService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,7 +31,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/posts")
-public class PostController {
+public class PostController implements PostControllerOpenAPI{
 
     @Autowired
     private PostService service;
