@@ -90,7 +90,7 @@ docker run --name blog-app -p 8080:8080  -d blog-app:0.0.1-SNAPSHOT
 ## API Endpoints 📚
 
 Para fazer as requisições HTTP abaixo, foi utilizada a ferramenta [Postman](https://www.postman.com/):
-- Collection do Postman completa: [Postman-Collection](https://github.com/user-attachments/files/17087984/blog-app-PostmanCollection.json)
+- Collection do Postman completa: [Postman-Collection](https://github.com/user-attachments/files/17122047/blog-app-PostmanCollection.json)
 
 - Criar Post
 ```
